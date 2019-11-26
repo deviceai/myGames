@@ -21,6 +21,7 @@ public class JavaSweeper extends JFrame {
     private  JavaSweeper(){
         //Ranges.setSize(new Coord(COLS, ROWS));
         game = new Game(COLS, ROWS);
+        game.start();
         setImages();
         initPanel();
         initFrame();
