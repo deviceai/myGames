@@ -20,7 +20,7 @@ public class JavaSweeper extends JFrame {
     }
 
     private  JavaSweeper(){
-        //Ranges.setSize(new Coord(COLS, ROWS));
+
         game = new Game(COLS, ROWS, BOMBS);
         game.start();
         setImages();
@@ -33,11 +33,7 @@ public class JavaSweeper extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                //g.drawImage(getImage("bomb"), 0,0, this);
-                //g.drawImage(getImage("num1"), IMAGE_SIZE,0, this);
-               // for (Box box : Box.values()){
                 for (Coord coord : Ranges.getAllCoords()){
-                    //Coord coord = new Coord(box.ordinal() * IMAGE_SIZE, 0);
                     g.drawImage((Image) game.getBox(coord).image,
                             coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this);
                 }

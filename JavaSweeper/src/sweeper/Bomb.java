@@ -14,7 +14,6 @@ class Bomb {
         for (int j = 0; j< totalBombs; j++){
             placeBomb();
         }
-
     }
 
     Box get (Coord coord){
@@ -22,14 +21,20 @@ class Bomb {
     }
 
     private void placeBomb() {
+
         Coord coord = Ranges.getRandomCoord();
-        //bombMap.set(new Coord(4,4), Box.BOMB);
         bombMap.set(coord, Box.BOMB);
-        for (Coord around : Ranges.getCoordsAround(coord)){
-            bombMap.set (around, Box.NUM1);
-        }
+        incNumberAroundBomb(coord);
+    }
+
+    private void incNumberAroundBomb(Coord coord){
+        for (Coord around : Ranges.getCoordsAround(coord))
+            if (Box.BOMB != bombMap.get(around))
+                bombMap.set (around, bombMap.get(around).getNextNumberBox());
 
     }
+
+
 
 
 }

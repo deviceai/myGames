@@ -41,14 +41,10 @@ public class Ranges {
         Coord around;
         ArrayList<Coord> list = new ArrayList<Coord>();
         for (int x = coord.x - 1; x <= coord.x + 1; x++)
-            for (int y = coord.y - 1; y <= coord.y; y++){
-                if (inRange(around = new Coord(x,y)));
-                    if (!around.equals(coord)){
+            for (int y = coord.y - 1; y <= coord.y + 1; y++)
+                if (inRange(around = new Coord(x,y)))
+                    if (!around.equals(coord))
                         list.add(around);
-                    }
-            }
-
         return list;
-
     }
 }

@@ -16,7 +16,7 @@ public class Game {
     }
 
     public Box getBox(Coord coord){
-        //return  Box.values()[(coord.x + coord.y) % Box.values().length];
+
         return bomb.get(coord);
     }
 }
