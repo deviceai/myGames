@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import sweeper.Box;
 import sweeper.Coord;
 import sweeper.Game;
@@ -40,6 +43,21 @@ public class JavaSweeper extends JFrame {
 
             }
         };
+
+        //mouse driver
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int x = e.getX() / IMAGE_SIZE;
+                int y = e.getY() / IMAGE_SIZE;
+
+                Coord coord = new Coord(x, y);
+                if (e.getButton() == MouseEvent.BUTTON1)
+                    game.pressLeftButton (coord);
+                    panel.repaint();
+            }
+        });
+
         panel.setPreferredSize(new Dimension(
                 //COLS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
                 Ranges.getSize().x * IMAGE_SIZE,
