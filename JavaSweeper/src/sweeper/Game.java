@@ -32,6 +32,7 @@ public class Game {
     }
 
     public void pressLeftButton(Coord coord) {
+        if (gameOver()) return;
         openBox (coord);
         checkWiner();
 
@@ -45,7 +46,7 @@ public class Game {
 
     private void openBox(Coord coord) {
         switch (flag.get(coord)){
-            case OPENED: return;
+            case OPENED: setOpenedToClosedBoxesAroundNumber(coord);return;
             case FLAGED: return;
             case CLOSED:
                 switch (bomb.get(coord)){
@@ -73,6 +74,24 @@ public class Game {
     }
 
     public void pressRightButton(Coord coord) {
+        if (gameOver()) return;
         flag.setFlaggedToBox(coord);
     }
+
+    private boolean gameOver() {
+        if (state == GameState.PLAYED)
+            return false;
+        start();
+        return true;
+    }
+
+    void setOpenedToClosedBoxesAroundNumber(Coord coord){
+        if (bomb.get(coord) != Box.BOMB)
+            if (flag.getCountOfFlagedBoxesAround(coord) == bomb.get(coord).getNumber())
+                for(Coord around : Ranges.getCoordsAround(coord))
+                    if(flag.get (around) == Box.CLOSED)
+                        openBox(around);
+    }
+
+
 }

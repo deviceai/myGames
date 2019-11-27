@@ -48,7 +48,6 @@ public class JavaSweeper extends JFrame {
                     g.drawImage((Image) game.getBox(coord).image,
                             coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this);
                 }
-
             }
         };
 

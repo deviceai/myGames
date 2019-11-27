@@ -42,14 +42,25 @@ class Flag {
         flagMap.set(coord, Box.BOMBED);
     }
 
-    public void setOpenedToClosedBombBox(Coord coord) {
+    void setOpenedToClosedBombBox(Coord coord) {
         if (flagMap.get(coord) == Box.CLOSED)
             flagMap.set (coord, Box.OPENED);
 
     }
 
-    public void setNoBombToFlagedSafeBox(Coord coord) {
+    void setNoBombToFlagedSafeBox(Coord coord) {
         if (flagMap.get(coord) == Box.FLAGED)
             flagMap.set (coord, Box.NOBOMB);
     }
+
+
+    int getCountOfFlagedBoxesAround(Coord coord) {
+        int count = 0;
+        for (Coord around : Ranges.getCoordsAround(coord))
+            if (flagMap.get(around) == Box.FLAGED)
+                count ++;
+        return count;
+    }
+
+
 }

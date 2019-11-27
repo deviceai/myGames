@@ -2,7 +2,6 @@ package sweeper;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 public class Ranges {
 
@@ -12,7 +11,7 @@ public class Ranges {
 
     public static void  setSize (Coord s){
         size = s;
-        allCoords = new ArrayList<Coord>();
+        allCoords = new ArrayList<>();
         for (int y = 0; y < size.y; y++){
             for (int x = 0; x < size.x; x++){
                 allCoords.add(new Coord(x,y));
@@ -39,7 +38,7 @@ public class Ranges {
 
     static ArrayList<Coord> getCoordsAround(Coord coord){
         Coord around;
-        ArrayList<Coord> list = new ArrayList<Coord>();
+        ArrayList<Coord> list = new ArrayList<>();
         for (int x = coord.x - 1; x <= coord.x + 1; x++)
             for (int y = coord.y - 1; y <= coord.y + 1; y++)
                 if (inRange(around = new Coord(x,y)))
