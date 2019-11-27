@@ -2,9 +2,10 @@ package sweeper;
 
 class Flag {
     private Matrix flagMap;
+    private int countOfCosedBoxes;
     void start ( ){
         flagMap = new Matrix(Box.CLOSED);
-        //flagMap.set(new Coord(4,4), Box.OPENED);
+        countOfCosedBoxes = Ranges.getSize().x * Ranges.getSize().y;
     }
 
     Box get (Coord coord) {
@@ -13,6 +14,7 @@ class Flag {
 
     public void setOpenedToBox(Coord coord) {
         flagMap.set(coord, Box.OPENED);
+        countOfCosedBoxes--;
     }
 
     void setFlaggedToBox (Coord coord){
@@ -26,8 +28,28 @@ class Flag {
         flagMap.set(coord, Box.CLOSED);
     }
 
-    public void setFlagToBox(Coord coord) {
+    private void setFlagToBox(Coord coord) {
         flagMap.set (coord, Box.FLAGED);
 
+    }
+
+     int getCountOfClosedBoxes() {
+        return countOfCosedBoxes;
+
+    }
+
+    void setBombedToBox(Coord coord) {
+        flagMap.set(coord, Box.BOMBED);
+    }
+
+    public void setOpenedToClosedBombBox(Coord coord) {
+        if (flagMap.get(coord) == Box.CLOSED)
+            flagMap.set (coord, Box.OPENED);
+
+    }
+
+    public void setNoBombToFlagedSafeBox(Coord coord) {
+        if (flagMap.get(coord) == Box.FLAGED)
+            flagMap.set (coord, Box.NOBOMB);
     }
 }
